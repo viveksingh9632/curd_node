@@ -1,0 +1,55 @@
+<%- include("../layout/adminheader") %>
+
+<div class="container">
+    <h2 class="page-title">Pages</h2>
+    <a href="/admin/pages/add-page" class="btn btn-primary">Add a new page</a>
+    <br><br>
+    <% if (message) { %>
+        <div class="alert alert-dismissible fade show alert-<%= message.type %>" role="alert">
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            <strong><%= message.message %></strong>
+        </div>
+    <% } %>
+
+    <table class="table table-striped sorting">
+
+        <thead>
+            <tr class="home">
+                <th>Title</th>
+                <th>Slug</th>
+                <th>Content</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% pages.forEach((page) => { %>
+
+                <tr>
+                    <td>
+                        <%= page.title %>
+                    </td>
+                    <td>
+                        <%= page.slug %>
+                    </td>
+                    <td>
+                        <%= page.content %>
+
+                    </td>
+                    <td>
+                        <a href="/admin/pages/edit-page/<%= page._id %>" aria-label="Edit User" title="Edit User" class="action-link">
+                            <i class="fas fa-edit fa-lg mx-1 text-success"></i>
+                        </a>
+                        <a href="/admin/pages/delete-page/<%= page._id %>" aria-label="Delete User" title="Delete User" class="action-link">
+                            <i class="fas fa-trash fa-lg mx-1 text-danger"></i>
+                        </a>
+                    </td>
+
+                </tr>
+                <% }); %>
+
+        </tbody>
+    </table>
+
+</div>
+
+    <%- include("../layout/adminfooter") %>
